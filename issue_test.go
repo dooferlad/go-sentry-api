@@ -73,11 +73,11 @@ func TestIssueResource(t *testing.T) {
 		})
 
 		t.Run("Get the issue only", func(t *testing.T) {
-			issue, err := client.GetIssue(*issues[0].ID)
+			issue, err := client.GetIssue(issues[0].ID)
 			if err != nil {
 				t.Errorf("Failed to get issue: %s", err)
 			}
-			if *issue.ID != *issues[0].ID {
+			if issue.ID != issues[0].ID {
 				t.Error("Somehow not the same ID? How is this possible")
 			}
 		})
@@ -96,13 +96,13 @@ func TestIssueResource(t *testing.T) {
 			firstIssue := issues[0]
 
 			resolved := Resolved
-			firstIssue.Status = &resolved
+			firstIssue.Status = resolved
 
 			if err := client.UpdateIssue(firstIssue); err != nil {
 				t.Error(err)
 			}
 
-			if *firstIssue.Status != Resolved {
+			if firstIssue.Status != Resolved {
 				t.Error("Status did not get updated")
 			}
 

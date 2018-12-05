@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/atlassian/go-sentry-api/datatype"
+	"github.com/dooferlad/go-sentry-api/datatype"
 )
 
 // Tag is used for a event
@@ -73,7 +73,7 @@ type Event struct {
 	Entries         *[]Entry                `json:"entries,omitempty"`
 	Packages        *map[string]string      `json:"packages,omitempty"`
 	SDK             *map[string]interface{} `json:"sdk,omitempty"`
-	Contexts        *map[string]string      `json:"contexts,omitempty"`
+	Contexts        *map[string]interface{} `json:"contexts,omitempty"`
 	Context         *map[string]interface{} `json:"context,omitempty"`
 	Release         *Release                `json:"release,omitempty"`
 	GroupID         *string                 `json:"groupID,omitempty"`
@@ -89,13 +89,13 @@ func (c *Client) GetProjectEvent(o Organization, p Project, eventID string) (Eve
 //GetLatestEvent will fetch the latest event for a issue
 func (c *Client) GetLatestEvent(i Issue) (Event, error) {
 	var event Event
-	err := c.do("GET", fmt.Sprintf("issues/%s/events/latest", *i.ID), &event, nil)
+	err := c.do("GET", fmt.Sprintf("issues/%s/events/latest", i.ID), &event, nil)
 	return event, err
 }
 
 //GetOldestEvent will fetch the latest event for a issue
 func (c *Client) GetOldestEvent(i Issue) (Event, error) {
 	var event Event
-	err := c.do("GET", fmt.Sprintf("issues/%s/events/oldest", *i.ID), &event, nil)
+	err := c.do("GET", fmt.Sprintf("issues/%s/events/oldest", i.ID), &event, nil)
 	return event, err
 }

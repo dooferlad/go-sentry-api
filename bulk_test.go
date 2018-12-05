@@ -45,12 +45,12 @@ func TestBulkResourceModifyDelete(t *testing.T) {
 
 		ids := make([]string, 0)
 		for _, issue := range issues {
-			ids = append(ids, *issue.ID)
+			ids = append(ids, issue.ID)
 		}
 
 		for link.Next.Results {
 			for _, issue := range issues {
-				ids = append(ids, *issue.ID)
+				ids = append(ids, issue.ID)
 			}
 			link, err = client.GetPage(link.Next, &issues)
 			if err != nil {
