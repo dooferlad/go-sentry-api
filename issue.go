@@ -18,7 +18,7 @@ const (
 
 // Hash is returned via the issue_id/hashes
 type Hash struct {
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" bson:"id,omitempty"`
 }
 
 // Status is used to make consts for statuses
@@ -26,91 +26,91 @@ type Status string
 
 // IssueStats is the stats of a issue
 type IssueStats struct {
-	TwentyFourHour *[]Stat `json:"24h,omitempty"`
-	ThirtyDays     *[]Stat `json:"30d,omitempty"`
+	TwentyFourHour *[]Stat `json:"24h,omitempty" bson:"24h,omitempty"`
+	ThirtyDays     *[]Stat `json:"30d,omitempty" bson:"30d,omitempty"`
 }
 
 //IssueTagValue represents a tags value
 type IssueTagValue struct {
-	Count     *int64     `json:"count,omitempty"`
-	FirstSeen *time.Time `json:"firstSeen,omitempty"`
-	ID        *string    `json:"iD,omitempty"`
-	Key       *string    `json:"key,omitempty"`
-	LastSeen  *time.Time `json:"lastSeen,omitempty"`
-	Name      *string    `json:"name,omitempty"`
-	Value     *string    `json:"value,omitempty"`
+	Count     *int64     `json:"count,omitempty" bson:"count,omitempty"`
+	FirstSeen *time.Time `json:"firstSeen,omitempty" bson:"firstSeen,omitempty"`
+	ID        *string    `json:"iD,omitempty" bson:"iD,omitempty"`
+	Key       *string    `json:"key,omitempty" bson:"key,omitempty"`
+	LastSeen  *time.Time `json:"lastSeen,omitempty" bson:"lastSeen,omitempty"`
+	Name      *string    `json:"name,omitempty" bson:"name,omitempty"`
+	Value     *string    `json:"value,omitempty" bson:"value,omitempty"`
 }
 
 // IssueTag is a tag used in a sentry issue
 type IssueTag struct {
-	UniqueValues int             `json:"uniqueValues,omitempty"`
-	ID           string          `json:"id,omitempty"`
-	Key          string          `json:"key,omitempty"`
-	Name         string          `json:"name,omitempty"`
-	TopValues    []IssueTagValue `json:"topValues,omitempty"`
+	UniqueValues int             `json:"uniqueValues,omitempty" bson:"uniqueValues,omitempty"`
+	ID           string          `json:"id,omitempty" bson:"id,omitempty"`
+	Key          string          `json:"key,omitempty" bson:"key,omitempty"`
+	Name         string          `json:"name,omitempty" bson:"name,omitempty"`
+	TopValues    []IssueTagValue `json:"topValues,omitempty" bson:"topValues,omitempty"`
 }
 
 //Avatar is used for a users avatar
 type Avatar struct {
-	AvatarType *string `json:"avatarType,omitempty"`
-	AvatarUUID *string `json:"avatarUuid,omitempty"`
+	AvatarType *string `json:"avatarType,omitempty" bson:"avatarType,omitempty"`
+	AvatarUUID *string `json:"avatarUuid,omitempty" bson:"avatarUuid,omitempty"`
 }
 
 //InternalUser is a user on sentry and not a external customer
 type InternalUser struct {
-	AvatarURL  *string    `json:"avatarUrl,omitempty"`
-	DateJoined *time.Time `json:"dateJoined,omitempty"`
-	Email      *string    `json:"email,omitempty"`
-	Has2FA     *bool      `json:"has2fa,omitempty"`
-	ID         *string    `json:"iD,omitempty"`
-	IsActive   *bool      `json:"isActive,omitempty"`
-	IsManaged  *bool      `json:"isManaged,omitempty"`
-	LastLogin  *time.Time `json:"lastLogin,omitempty"`
-	Name       *string    `json:"name,omitempty"`
-	Username   *string    `json:"username,omitempty"`
+	AvatarURL  *string    `json:"avatarUrl,omitempty" bson:"avatarUrl,omitempty"`
+	DateJoined *time.Time `json:"dateJoined,omitempty" bson:"dateJoined,omitempty"`
+	Email      *string    `json:"email,omitempty" bson:"email,omitempty"`
+	Has2FA     *bool      `json:"has2fa,omitempty" bson:"has2fa,omitempty"`
+	ID         *string    `json:"iD,omitempty" bson:"id,omitempty"`
+	IsActive   *bool      `json:"isActive,omitempty" bson:"isActive,omitempty"`
+	IsManaged  *bool      `json:"isManaged,omitempty" bson:"isManaged,omitempty"`
+	LastLogin  *time.Time `json:"lastLogin,omitempty" bson:"lastLogin,omitempty"`
+	Name       *string    `json:"name,omitempty" bson:"name,omitempty"`
+	Username   *string    `json:"username,omitempty" bson:"username,omitempty"`
 }
 
 //Activity is what current activity has happend on a issue
 type Activity struct {
-	Data        *map[string]interface{} `json:"data,omitempty"`
-	DateCreated *time.Time              `json:"dateCreated,omitempty"`
-	ID          *string                 `json:"id,omitempty"`
-	Type        *string                 `json:"type,omitempty"`
-	User        *InternalUser           `json:"user,omitempty"`
+	Data        *map[string]interface{} `json:"data,omitempty" bson:"data,omitempty"`
+	DateCreated *time.Time              `json:"dateCreated,omitempty" bson:"dateCreated,omitempty"`
+	ID          *string                 `json:"id,omitempty" bson:"id,omitempty"`
+	Type        *string                 `json:"type,omitempty" bson:"type,omitempty"`
+	User        *InternalUser           `json:"user,omitempty" bson:"user,omitempty"`
 }
 
 // Issue returns a issue found in sentry
 type Issue struct {
-	Annotations         []string               `json:"annotations,omitempty"`
-	AssignedTo          InternalUser           `json:"assignedTo,omitempty"`
-	Activity            []Activity             `json:"activity,omitempty"`
-	Count               string                 `json:"count,omitempty"`
-	Culprit             string                 `json:"culprit,omitempty"`
-	FirstSeen           time.Time              `json:"firstSeen,omitempty"`
-	HasSeen             bool                   `json:"hasSeen,omitempty"`
-	ID                  string                 `json:"id,omitempty"`
-	IsBookmarked        bool                   `json:"isBookmarked,omitempty"`
-	IsPublic            bool                   `json:"isPublic,omitempty"`
-	IsSubscribed        bool                   `json:"isSubscribed,omitempty"`
-	LastSeen            time.Time              `json:"lastSeen,omitempty"`
-	Level               string                 `json:"level,omitempty"`
-	Logger              string                 `json:"logger,omitempty"`
-	Metadata            map[string]string      `json:"metadata,omitempty"`
-	NumComments         int                    `json:"numComments,omitempty"`
-	Permalink           string                 `json:"permalink,omitempty"`
-	Project             Project                `json:"project,omitempty"`
-	ShareID             string                 `json:"shareId,omitempty"`
-	ShortID             string                 `json:"shortId,omitempty"`
-	Stats               IssueStats             `json:"stats,omitempty"`
-	Status              Status                 `json:"status,omitempty"`
-	StatusDetails       map[string]interface{} `json:"statusDetails,omitempty"`
-	SubscriptionDetails map[string]string      `json:"subscriptionDetails,omitempty"`
-	Tags                []IssueTag             `json:"tags,omitempty"`
-	Title               string                 `json:"title,omitempty"`
-	Type                string                 `json:"type,omitempty"`
-	UserCount           int                    `json:"userCount,omitempty"`
-	UserReportCount     int                    `json:"userReportCount,omitempty"`
-	Events              []Event                `json:"_events,omitempty"`
+	Annotations         []string               `json:"annotations,omitempty" bson:"annotations,omitempty"`
+	AssignedTo          InternalUser           `json:"assignedTo,omitempty" bson:"assignedTo,omitempty"`
+	Activity            []Activity             `json:"activity,omitempty" bson:"activity,omitempty"`
+	Count               string                 `json:"count,omitempty" bson:"count,omitempty"`
+	Culprit             string                 `json:"culprit,omitempty" bson:"culprit,omitempty"`
+	FirstSeen           time.Time              `json:"firstSeen,omitempty" bson:"firstSeen,omitempty"`
+	HasSeen             bool                   `json:"hasSeen,omitempty" bson:"hasSeen,omitempty"`
+	ID                  string                 `json:"id,omitempty" bson:"_id,omitempty"`
+	IsBookmarked        bool                   `json:"isBookmarked,omitempty" bson:"isBookmarked,omitempty"`
+	IsPublic            bool                   `json:"isPublic,omitempty" bson:"isPublic,omitempty"`
+	IsSubscribed        bool                   `json:"isSubscribed,omitempty" bson:"isSubscribed,omitempty"`
+	LastSeen            time.Time              `json:"lastSeen,omitempty" bson:"lastSeen,omitempty"`
+	Level               string                 `json:"level,omitempty" bson:"level,omitempty"`
+	Logger              string                 `json:"logger,omitempty" bson:"logger,omitempty"`
+	Metadata            map[string]string      `json:"metadata,omitempty" bson:"metadata,omitempty"`
+	NumComments         int                    `json:"numComments,omitempty" bson:"numComments,omitempty"`
+	Permalink           string                 `json:"permalink,omitempty" bson:"permalink,omitempty"`
+	Project             Project                `json:"project,omitempty" bson:"project,omitempty"`
+	ShareID             string                 `json:"shareId,omitempty" bson:"shareId,omitempty"`
+	ShortID             string                 `json:"shortId,omitempty" bson:"shortId,omitempty"`
+	Stats               IssueStats             `json:"stats,omitempty" bson:"stats,omitempty"`
+	Status              Status                 `json:"status,omitempty" bson:"status,omitempty"`
+	StatusDetails       map[string]interface{} `json:"statusDetails,omitempty" bson:"statusDetails,omitempty"`
+	SubscriptionDetails map[string]string      `json:"subscriptionDetails,omitempty" bson:"subscriptionDetails,omitempty"`
+	Tags                []IssueTag             `json:"tags,omitempty" bson:"tags,omitempty"`
+	Title               string                 `json:"title,omitempty" bson:"title,omitempty"`
+	Type                string                 `json:"type,omitempty" bson:"type,omitempty"`
+	UserCount           int                    `json:"userCount,omitempty" bson:"userCount,omitempty"`
+	UserReportCount     int                    `json:"userReportCount,omitempty" bson:"userReportCount,omitempty"`
+	Events              []Event                `json:"_events,omitempty" bson:"events,omitempty"`
 }
 
 type issueQuery struct {
