@@ -96,6 +96,7 @@ func (c *Client) decodeOrError(response *http.Response, out interface{}) error {
 		if err != nil {
 			return err
 		}
+
 		if err := json.Unmarshal(body, &out); err != nil {
 			return err
 		}

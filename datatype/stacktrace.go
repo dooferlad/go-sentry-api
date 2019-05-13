@@ -26,37 +26,37 @@ func (f *FrameContext) UnmarshalJSON(data []byte) error {
 
 // Frame represents a frame in a stacktrace/exception
 type Frame struct {
-	Filename           *string                 `json:"filename,omitempty"`
-	AbsolutePath       *string                 `json:"absPath,omitempty"`
-	Module             *string                 `json:"module,omitempty"`
-	Package            *string                 `json:"package,omitempty"`
-	InstructionAddress *string                 `json:"instructionAddr,omitempty"`
-	InstructionOffSet  *string                 `json:"instructionOffSet,omitempty"`
-	Function           *string                 `json:"function,omitempty"`
-	Errors             *[]string               `json:"errors,omitempty"`
-	ColumnNo           *float64                `json:"columnNo,omitempty"`
-	InApp              *bool                   `json:"inApp,omitempty"`
-	Platform           *string                 `json:"platform,omitempty"`
-	Context            *[]FrameContext         `json:"context,omitempty"`
-	Vars               *map[string]interface{} `json:"vars,omitempty"`
-	LineNo             *float64                `json:"lineNo,omitempty"`
-	SymboleAddr        *string                 `json:"symboleAddr,omitempty"`
-	Symbol             *string                 `json:"symbol,omitempty"`
+	Filename           string                 `json:"filename,omitempty"`
+	AbsolutePath       string                 `json:"absPath,omitempty"`
+	Module             string                 `json:"module,omitempty"`
+	Package            string                 `json:"package,omitempty"`
+	InstructionAddress string                 `json:"instructionAddr,omitempty"`
+	InstructionOffSet  string                 `json:"instructionOffSet,omitempty"`
+	Function           string                 `json:"function,omitempty"`
+	Errors             []string               `json:"errors,omitempty"`
+	ColumnNo           float64                `json:"columnNo,omitempty"`
+	InApp              bool                   `json:"inApp,omitempty"`
+	Platform           string                 `json:"platform,omitempty"`
+	Context            []FrameContext         `json:"context,omitempty"`
+	Vars               map[string]interface{} `json:"vars,omitempty"`
+	LineNo             float64                `json:"lineNo,omitempty"`
+	SymboleAddr        string                 `json:"symboleAddr,omitempty"`
+	Symbol             string                 `json:"symbol,omitempty"`
 }
 
 //Exception implements a exception which olds stacktraces
 type Exception struct {
-	Values          *[]SingleException `json:"values,omitempty"`
-	HasSystemFrames *bool              `json:"hasSystemFrames,omitempty"`
-	ExcOmitted      *bool              `json:"excOmitted,omitempty"`
+	Values          []SingleException `json:"values,omitempty"`
+	HasSystemFrames bool              `json:"hasSystemFrames,omitempty"`
+	ExcOmitted      bool              `json:"excOmitted,omitempty"`
 }
 
 // SingleException represents a single exception in a exception
 type SingleException struct {
-	Type       *string            `json:"type,omitempty"`
-	Value      *string            `json:"value,omitempty"`
-	Mechanism  *map[string]string `json:"mechanism,omitempty"`
-	Stacktrace *Stacktrace        `json:"stacktrace,omitempty"`
+	Type       string            `json:"type,omitempty"`
+	Value      string            `json:"value,omitempty"`
+	Mechanism  map[string]string `json:"mechanism,omitempty"`
+	Stacktrace Stacktrace        `json:"stacktrace,omitempty"`
 }
 
 //Stacktrace implements the sentry interface for a stack trace in a event request
