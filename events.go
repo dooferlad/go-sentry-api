@@ -58,7 +58,8 @@ func (e *Entry) GetInterface() (string, interface{}, error) {
 // Event is the event that was created on the app and sentry reported on
 type Event struct {
 	EventID         string                 `json:"eventID,omitempty" bson:"eventID,omitempty"`
-	UserReport      string                 `json:"userReport,omitempty" bson:"userReport,omitempty"`
+	// UserReport      string                 `json:"userReport,omitempty" bson:"userReport,omitempty"`
+	// UserReport seems to be more accurately a map[string]interface{}, but I am not using it, so going to ignore it for now.
 	NextEventID     string                 `json:"nextEventID,omitempty" bson:"nextEventID,omitempty"`
 	PreviousEventID string                 `json:"previousEventID,omitempty" bson:"previousEventID,omitempty"`
 	Message         string                 `json:"message,omitempty" bson:"message,omitempty"`
