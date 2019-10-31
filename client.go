@@ -125,7 +125,11 @@ func (c *Client) newRequest(method, endpoint string, in interface{}) (*http.Requ
 		bodyreader = newbodyreader
 	}
 
-	req, err := http.NewRequest(method, c.Endpoint+endpoint+"/", bodyreader)
+	if endpoint[len(endpoint)-1:] != "/" {
+		endpoint = endpoint + "/"
+	}
+
+	req, err := http.NewRequest(method, c.Endpoint+endpoint, bodyreader)
 	if err != nil {
 		return nil, err
 	}

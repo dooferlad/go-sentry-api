@@ -191,6 +191,13 @@ func (c *Client) GetIssueEvents(i Issue) ([]Event, *Link, error) {
 	return events, link, err
 }
 
+//GetIssueEvents will fetch all events for a issue
+func (c *Client) GetIssueEventsFull(i Issue) ([]Event, *Link, error) {
+	var events []Event
+	link, err := c.doWithPagination("GET", fmt.Sprintf("issues/%s/events/?full=true", i.ID), &events, nil)
+	return events, link, err
+}
+
 //UpdateIssue will update status, assign to, hasseen, isbookmarked and issubscribed
 func (c *Client) UpdateIssue(i Issue) error {
 	return c.do("PUT", fmt.Sprintf("issues/%s", i.ID), &i, &i)
